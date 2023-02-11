@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Name:    MelissaDataRightFielderObjectLinuxNET
-# Purpose: Use the Melissa Updater to make the MelissaDataRightFielderObjectLinuxNET sample usable
+# Name:    MelissaRightFielderObjectLinuxDotnet
+# Purpose: Use the Melissa Updater to make the MelissaRightFielderObjectLinuxDotnet code usable
 
 ######################### Constants ##########################
 
@@ -48,7 +48,7 @@ ProductName="RF_DATA"
 # Uses the location of the .sh file 
 # Modify this if you want to use 
 CurrentPath=$(pwd)
-ProjectPath="$CurrentPath/MelissaDataRightFielderObjectLinuxNETSample"
+ProjectPath="$CurrentPath/MelissaRightFielderObjectLinuxDotnet"
 BuildPath="$ProjectPath/Build"
 DataPath="$ProjectPath/Data"
 
@@ -123,8 +123,8 @@ CheckSOs()
 }
 
 ########################## Main ############################
-printf "\n=============== Sample of Melissa Data Right Fielder Object ===============\n                    [ .NET | Linux | 64BIT ]\n"
-
+printf "\n=================== Melissa Right Fielder Object ===================\n                    [ .NET | Linux | 64BIT ]\n"
+       
 # Get license (either from parameters or user input)
 if [ -z "$license" ];
 then
@@ -176,20 +176,20 @@ fi
 
 printf "\nAll file(s) have been downloaded/updated!\n"
 
-# Start sample
+# Start program
 # Build project
 printf "\n=========================== BUILD PROJECT ==========================\n"
 
 # Target frameworks net7.0, net5.0, netcoreapp3.1
 # Please comment out the version that you don't want to use and uncomment the one that you do want to use
-dotnet publish -f="net7.0" -c Release -o $BuildPath MelissaDataRightFielderObjectLinuxNETSample/MelissaDataRightFielderObjectLinuxNETSample.csproj
-#dotnet publish -f="net5.0" -c Release -o $BuildPath MelissaDataRightFielderObjectLinuxNETSample/MelissaDataRightFielderObjectLinuxNETSample.csproj
-#dotnet publish -f="netcoreapp3.1" -c Release -o $BuildPath MelissaDataRightFielderObjectLinuxNETSample/MelissaDataRightFielderObjectLinuxNETSample.csproj
+dotnet publish -f="net7.0" -c Release -o $BuildPath MelissaRightFielderObjectLinuxDotnet/MelissaRightFielderObjectLinuxDotnet.csproj
+#dotnet publish -f="net5.0" -c Release -o $BuildPath MelissaRightFielderObjectLinuxDotnet/MelissaRightFielderObjectLinuxDotnet.csproj
+#dotnet publish -f="netcoreapp3.1" -c Release -o $BuildPath MelissaRightFielderObjectLinuxDotnet/MelissaRightFielderObjectLinuxDotnet.csproj
 
 # Run project
 if [ -z "$rfinput" ]; 
 then
-    dotnet $BuildPath/MelissaDataRightFielderObjectLinuxNETSample.dll --license $license  --dataPath $DataPath
+    dotnet $BuildPath/MelissaRightFielderObjectLinuxDotnet.dll --license $license  --dataPath $DataPath
 else
-    dotnet $BuildPath/MelissaDataRightFielderObjectLinuxNETSample.dll --license $license  --dataPath $DataPath --rfinput "$rfinput"
+    dotnet $BuildPath/MelissaRightFielderObjectLinuxDotnet.dll --license $license  --dataPath $DataPath --rfinput "$rfinput"
 fi
