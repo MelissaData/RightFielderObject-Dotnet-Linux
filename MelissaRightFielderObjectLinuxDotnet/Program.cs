@@ -82,7 +82,7 @@ namespace MelissaRightFielderObjectLinuxDotnet
 
         // Print user input
         Console.WriteLine("\n================================= INPUTS =================================\n");
-        Console.WriteLine($"\tRight Fielder Input: {dataContainer.Input}");
+        Console.WriteLine($"\t  Right Fielder Input: {dataContainer.Input}");
         //Console.WriteLine($"\t               Address: {dataContainer.Address}");
         //Console.WriteLine($"\t          CityStateZip: {dataContainer.CityStateZip}");
         //Console.WriteLine($"\t               Company: {dataContainer.Company}");
@@ -100,9 +100,9 @@ namespace MelissaRightFielderObjectLinuxDotnet
         Console.WriteLine("\n================================= OUTPUT =================================\n");
         Console.WriteLine("\n\tRightFielder Object Information:");
         //Console.WriteLine($"\t   Right Fielder Input: {dataContainer.Input}");
-        Console.WriteLine($"\t          AddressLine1: {rightFielderObject.mdRightFielder.GetAddress()}");
-        Console.WriteLine($"\t          AddressLine2: {rightFielderObject.mdRightFielder.GetAddress2()}");
-        Console.WriteLine($"\t          AddressLine3: {rightFielderObject.mdRightFielder.GetAddress3()}");
+        Console.WriteLine($"\t        Address Line 1: {rightFielderObject.mdRightFielder.GetAddress()}");
+        Console.WriteLine($"\t        Address Line 2: {rightFielderObject.mdRightFielder.GetAddress2()}");
+        Console.WriteLine($"\t        Address Line 3: {rightFielderObject.mdRightFielder.GetAddress3()}");
         Console.WriteLine($"\t                  City: {rightFielderObject.mdRightFielder.GetCity()}");
         Console.WriteLine($"\t                 State: {rightFielderObject.mdRightFielder.GetState()}");
         Console.WriteLine($"\t                   Zip: {rightFielderObject.mdRightFielder.GetPostalCode()}");
