@@ -11,30 +11,40 @@ NC='\033[0m' # No Color
 ######################### Parameters ##########################
 
 rfinput=""
+dataPath=""
 license=""
 quiet="false"
 
 while [ $# -gt 0 ] ; do
   case $1 in
-    -r | --rfinput) 
+    --rfinput) 
         rfinput="$2" 
 
-        if [ "$rfinput" == "-l" ] || [ "$rfinput" == "--license" ] || [ "$rfinput" == "-q" ] || [ "$rfinput" == "--quiet" ] || [ -z "$rfinput" ];
+        if [ "$rfinput" == "--dataPath" ] || [ "$rfinput" == "--license" ] || [ "$rfinput" == "--quiet" ] || [ -z "$rfinput" ];
         then
             printf "${RED}Error: Missing an argument for parameter \'rfinput\'.${NC}\n"  
             exit 1
         fi 
         ;;
-    -l | --license) 
+    --dataPath) 
+        dataPath="$2"
+        
+        if [ "$dataPath" == "--license" ] || [ "$dataPath" == "--quiet" ] || [ "$dataPath" == "--rfinput" ] || [ -z "$dataPath" ];
+        then
+            printf "${RED}Error: Missing an argument for parameter \'dataPath\'.${NC}\n"  
+            exit 1
+        fi  
+        ;;
+    --license) 
         license="$2" 
 
-        if [ "$license" == "-q" ] || [ "$license" == "--quiet" ] || [ "$license" == "-r" ] || [ "$license" == "--rfinput" ] || [ -z "$license" ];
+        if [ "$license" == "--quiet" ] || [ "$license" == "--rfinput" ] || [ "$license" == "--dataPath" ] || [ -z "$license" ];
         then
             printf "${RED}Error: Missing an argument for parameter \'license\'.${NC}\n"  
             exit 1
         fi   
         ;;
-    -q | --quiet) 
+    --quiet) 
         quiet="true" 
         ;;
   esac
@@ -42,31 +52,41 @@ while [ $# -gt 0 ] ; do
 done
 
 # ######################### Config ###########################
-RELEASE_VERSION='2024.01'
+RELEASE_VERSION='2024.Q2'
 ProductName="RF_DATA"
 
 # Uses the location of the .sh file 
-# Modify this if you want to use 
 CurrentPath=$(pwd)
 ProjectPath="$CurrentPath/MelissaRightFielderObjectLinuxDotnet"
-BuildPath="$ProjectPath/Build"
-DataPath="$ProjectPath/Data"
 
-if [ ! -d $DataPath ];
+BuildPath="$ProjectPath/Build"
+if [ ! -d "$BuildPath" ];
 then
-    mkdir $DataPath
+    mkdir "$BuildPath"
 fi
 
-if [ ! -d $BuildPath ];
+if [ -z "$dataPath" ];
 then
-    mkdir $BuildPath
+    DataPath="$ProjectPath/Data"
+else
+    DataPath=$dataPath
+fi
+
+if [ ! -d "$DataPath" ] && [ "$DataPath" == "$ProjectPath/Data" ];
+then
+    mkdir "$DataPath"
+elif [ ! -d "$DataPath" ] && [ "$DataPath" != "$ProjectPath/Data" ];
+then
+    printf "\nData file path does not exist. Please check that your file path is correct.\n"
+    printf "\nAborting program, see above.\n"
+    exit 1
 fi
 
 # Config variables for download file(s)
 Config_FileName="libmdRightFielder.so"
 Config_ReleaseVersion=$RELEASE_VERSION
 Config_OS="LINUX"
-Config_Compiler="GCC41"
+Config_Compiler="GCC48"
 Config_Architecture="64BIT"
 Config_Type="BINARY"
 
@@ -176,18 +196,25 @@ then
   exit 1
 fi
 
+# Get data file path (either from parameters or user input)
+if [ "$DataPath" = "$ProjectPath/Data" ]; then
+    printf "Please enter your data files path directory if you have already downloaded the release zip.\nOtherwise, the data files will be downloaded using the Melissa Updater (Enter to skip): "
+    read dataPathInput
+
+    if [ ! -z "$dataPathInput" ]; then  
+        if [ ! -d "$dataPathInput" ]; then  
+            printf "\nData file path does not exist. Please check that your file path is correct.\n"
+            printf "\nAborting program, see above.\n"
+            exit 1
+        else
+            DataPath=$dataPathInput
+        fi
+    fi
+fi
+
 # Use Melissa Updater to download data file(s) 
 # Download data file(s) 
-DownloadDataFiles $license      # comment out this line if using DQS Release
-
-# Set data file(s) path
-#DataPath=""      # uncomment this line and change to your DQS Release data file(s) directory 
-
-#if [ ! -d $DataPath ]; # uncomment this section of code if you are using your own DQS Release data file(s) directory
-#then
-    #printf "\nData path is invalid!\n"
-    #exit 1
-#fi
+DownloadDataFiles $license # Comment out this line if using own release
 
 # Download SO(s)
 DownloadSO $license 
