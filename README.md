@@ -25,7 +25,7 @@ And return
 
 ## Tested Environments
 - Linux 64-bit .NET 7.0, Ubuntu 20.04.05 LTS
-- Melissa data files for 2024-Q3
+- Melissa data files for 2024-Q4
 
 ## Required File(s) and Programs
 
@@ -73,8 +73,8 @@ Once all of this is done, you should be able to verify that the SDK is installed
 
 #### Download this project
 ```
-$ git clone https://github.com/MelissaData/RightFielderObject-Dotnet-Linux
-$ cd RightFielderObject-Dotnet-Linux
+git clone https://github.com/MelissaData/RightFielderObject-Dotnet-Linux
+cd RightFielderObject-Dotnet-Linux
 ```
 
 #### Set up Melissa Updater 
@@ -130,26 +130,26 @@ Parameters:
 When you have modified the script to match your data location, let's run the script. There are two modes:
 - Interactive 
 
-	The script will prompt the user for the right fielder input, then use the provided right fielder input to test the Right Fielder Object. For example:
-	```
-	$ ./MelissaRightFielderObjectLinuxDotnet.sh
-	```
-    For quiet mode:
-    ```
-    $ ./MelissaRightFielderObjectLinuxDotnet.sh --quiet
-    ```
+  The script will prompt the user for the right fielder input, then use the provided right fielder input to test the Right Fielder Object. For example:
+  ```
+  ./MelissaRightFielderObjectLinuxDotnet.sh
+  ```
+  For quiet mode:
+  ```
+  ./MelissaRightFielderObjectLinuxDotnet.sh --quiet
+  ```
 - Command Line 
 
-	You can pass a right fielder input in ```--rfinput``` parameter and a license string in ```--license``` parameter to test Right Fielder Object. For example:
-	```
-    $ ./MelissaRightFielderObjectLinuxDotnet.sh --rfinput "22382 Avenida Empresa, Rancho Santa Margarita, CA 92688"
-	$ ./MelissaRightFielderObjectLinuxDotnet.sh --rfinput "22382 Avenida Empresa, Rancho Santa Margarita, CA 92688" --license "<your_license_string>" 
-    ```
-	For quiet mode:
-    ```
-    $ ./MelissaRightFielderObjectLinuxDotnet.sh --rfinput "22382 Avenida Empresa, Rancho Santa Margarita, CA 92688" --quiet
-	$ ./MelissaRightFielderObjectLinuxDotnet.sh --rfinput "22382 Avenida Empresa, Rancho Santa Margarita, CA 92688" --license "<your_license_string>" --quiet
-    ```
+  You can pass a right fielder input in ```--rfinput``` parameter and a license string in ```--license``` parameter to test Right Fielder Object. For example:
+  ```
+  ./MelissaRightFielderObjectLinuxDotnet.sh --rfinput "22382 Avenida Empresa, Rancho Santa Margarita, CA 92688"
+  ./MelissaRightFielderObjectLinuxDotnet.sh --rfinput "22382 Avenida Empresa, Rancho Santa Margarita, CA 92688" --license "<your_license_string>" 
+  ```
+  For quiet mode:
+  ```
+  ./MelissaRightFielderObjectLinuxDotnet.sh --rfinput "22382 Avenida Empresa, Rancho Santa Margarita, CA 92688" --quiet
+  ./MelissaRightFielderObjectLinuxDotnet.sh --rfinput "22382 Avenida Empresa, Rancho Santa Margarita, CA 92688" --license "<your_license_string>" --quiet
+  ```
 This is the expected output from a successful setup for interactive mode:
 
 ![alt text](/screenshots/output.png)
