@@ -242,7 +242,7 @@ printf "\nAll file(s) have been downloaded/updated!\n"
 # Build project
 printf "\n=========================== BUILD PROJECT ==========================\n"
 
-dotnet publish -f="net7.0" -c Release -o $BuildPath MelissaRightFielderObjectLinuxDotnet/MelissaRightFielderObjectLinuxDotnet.csproj
+dotnet publish -f="net8.0" -c Release -o $BuildPath MelissaRightFielderObjectLinuxDotnet/MelissaRightFielderObjectLinuxDotnet.csproj
 
 # Run project
 if [ -z "$rfinput" ]; 
